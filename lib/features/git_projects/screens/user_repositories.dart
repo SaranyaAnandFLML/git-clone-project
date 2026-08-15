@@ -6,8 +6,8 @@ import '../controller/github_user_controller.dart';
 
 final repoSortProvider = StateProvider<String>((ref) => 'Stars');
 
-class Home extends ConsumerWidget {
-  const Home({super.key});
+class UserRepositories extends ConsumerWidget {
+  const UserRepositories({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

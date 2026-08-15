@@ -6,14 +6,14 @@ import '../controller/recent_searches_provider.dart';
 import 'user_repositories.dart';
 import '../../../models/github_user.dart';
 
-class SearchScreen extends ConsumerStatefulWidget {
-  const SearchScreen({super.key});
+class Home extends ConsumerStatefulWidget {
+  const Home({super.key});
 
   @override
-  ConsumerState<SearchScreen> createState() => _SearchScreenState();
+  ConsumerState<Home> createState() => _SearchScreenState();
 }
 
-class _SearchScreenState extends ConsumerState<SearchScreen> {
+class _SearchScreenState extends ConsumerState<Home> {
   final TextEditingController _searchController = TextEditingController();
 
   @override
@@ -28,6 +28,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     if (text.isNotEmpty) {
       ref.read(searchUsernameProvider.notifier).state = text;
       ref.read(recentSearchesProvider.notifier).addSearch(text);
+    } else {
+      ref.read(searchUsernameProvider.notifier).state = '';
     }
   }
 
@@ -37,7 +39,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('GitHub Search',style: TextStyle(fontWeight: FontWeight.bold),),
+        title: const Text('GitHub Find',style: TextStyle(fontWeight: FontWeight.bold),),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical:10.h,horizontal: 16),
@@ -69,10 +71,16 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                             icon: Icon(Icons.clear, size: 18.sp, color: Colors.grey),
                             onPressed: () {
                               _searchController.clear();
+                              ref.read(searchUsernameProvider.notifier).state = '';
                             },
                           )
                         : null,
                   ),
+                  onChanged: (val) {
+                    if (val.trim().isEmpty) {
+                      ref.read(searchUsernameProvider.notifier).state = '';
+                    }
+                  },
                   onSubmitted: (_) => _onSearch(),
                 );
               },

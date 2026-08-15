@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
         );
       },
-      child: const SearchScreen(),
+      child: const Home(),
     );
   }
 }
