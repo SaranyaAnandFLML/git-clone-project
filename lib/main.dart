@@ -18,6 +18,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'GitHub User Search',
 
+
+
       themeMode: ThemeMode.system, // Automatically switch based on system settings
       home: const SearchScreen(),
       debugShowCheckedModeBanner: false,
